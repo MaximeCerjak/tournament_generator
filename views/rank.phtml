@@ -1,0 +1,62 @@
+<section>
+    <?php if( !empty($teams_rank ) ) : ?>
+        <h2>Classement des équipes</h2>
+            
+        <table class="table-admin">
+            <thead>
+                <tr>
+                    <th>Rang</th>
+                    <th>Equipe</th>
+                    <th>Points marqués</th>
+                    <th>Points de victoire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for( $i = 0; $i < count( $teams_rank ); $i++ ) : ?>
+                    <tr>
+                        <td><?= ($i + 1) ?></td>
+                        <td><?= $teams_rank[$i]['team_name'] ?></td>
+                        <td><?= $teams_rank[$i]['total_matchs_points'] ?></td>
+                        <td><?= $teams_rank[$i]['team_victories'] ?></td>
+                    </tr>
+                <?php endfor; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+        
+    <?php if( !empty($users_rank ) ) : ?>
+        <h2>Classement des joueurs</h2>
+        
+        <table class="table-admin">
+            <thead>
+                <tr>
+                    <th>Rang</th>
+                    <th>Joueur</th>
+                    <th>Equipe</th>
+                    <th>Points marqués</th>
+                    <th>Points de victoire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for( $i = 0; $i < count( $users_rank ); $i++ ) : ?>
+                    <tr>
+                        <td><?= $i+1 ?></td>
+                        <td>
+                            <?php foreach( $teams_rank as $rank ) : ?>
+                                <?php if( $rank['team_id'] == $users_rank[$i]['team_id'] ) : ?>
+                                    <?= $rank['team_name'] ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </td>
+                        <td><?= $users_rank[$i]['user_pseudo'] ?></td>
+                        <td><?= $users_rank[$i]['user_total_points'] ?></td>
+                        <td><?= $users_rank[$i]['user_victories'] ?></td>
+                    </tr>
+                <?php endfor; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p>Il n'y a actuellement aucun tournoi de démarré, veuillez ajouter des joueurs ou créer un tournoi.</p>
+    <?php endif; ?>
+    
+</section>

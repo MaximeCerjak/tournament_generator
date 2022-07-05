@@ -1,0 +1,27 @@
+<section class="form-block">
+    <h2>Formulaire d'inscription</h2>
+    <h3>Tournoi <?= $event['event_name'] ?></h3>
+    <form class="form" method="POST" action="index.php?route=addPlayers">
+        <div class="input-block">
+            <label for="firstname"><?= isset( $_SESSION['admin'] ) ? "Nom" : "Votre nom" ?></label>
+            <input type="text" name="firstname" required>
+        </div>
+        <div class="input-block">
+            <label for="lastname"><?= isset( $_SESSION['admin'] ) ? "Prénom" : "Votre prénom" ?></label>
+            <input type="text" name="lastname" required>
+        </div>
+        <div class="input-block">
+            <label for="pseudo"><?= isset( $_SESSION['admin'] ) ? "Pseudo" : "Votre pseudo" ?></label>
+            <input type="text" name="pseudo">
+        </div>
+        <div class="input-block">
+            <label for="email"><?= isset( $_SESSION['admin'] ) ? "Email" : "Votre email" ?></label>
+            <input type="email" name="email" required>
+        </div>
+        <input type="hidden" value="<?= $event['event_id'] ?>" name="eventId">
+        <button class="btn" type="submit">C'est partie !</button>
+    </form>
+    <?php if( isset( $_SESSION['admin'] ) ) : ?>
+        <p><a href="index.php?route=players&eventID=<?= $event['event_id'] ?>">Retour liste participants</a></p>
+    <?php endif; ?>
+</section>

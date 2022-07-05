@@ -1,0 +1,16 @@
+<section class="back-container">
+    <h2>Liste des participants du tournoi <?= $event['event_name'] ?></h2>
+    <?php if( !empty($users) ) : ?>
+    <ul>
+        <?php foreach( $users as $user) : ?>
+            <li><?= $user['user_firstname']." ".$user['user_lastname'] ?> - <a href="index.php?route=deletePlayer&userID=<?= $user['user_id'] ?>&eventID=<?= $event['event_id'] ?>">Supprimer</a></li>
+            
+        <?php endforeach; ?>
+    </ul>
+    <?php else : ?>
+        <p>Il n'y a actuellement aucun joueur, veuillez attendre l'inscription des participants ou les ajouter personellement à l'aide du formulaire accesible ci dessous.</p>
+    <?php endif; ?>
+    
+    <p><a href="index.php?route=signIn&eventID=<?= $event['event_id'] ?>">Ajouter des joueurs</a></p>
+    <p><a href="index.php?route=tournament&eventID=<?= $event['event_id'] ?>">Créer le tournoi</a></p>
+</section>

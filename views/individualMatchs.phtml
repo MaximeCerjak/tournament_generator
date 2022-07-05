@@ -1,0 +1,318 @@
+<section class="tab-block">
+    
+    <h2><?= $event['event_name'] ?> : Liste des matchs</h2>
+    
+    <?php if( $tournament['final_on'] == 1 ) : ?>
+        <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+    <?php else : ?>
+        <?php if( isset($winners) && !empty($winners ) ) : ?>
+            <?php switch( $turn_result ) : 
+                case 1 : ?>
+                    <?php if( !empty( $first_exaequo ) ) : ?>
+                        <?php if( empty( $return_turn[0] ) ) : ?>
+                        <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=1">Générer les matchs retours</a></p>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if( count($winners) % 2 == 0 ) : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=2">Générer le deuxième tour de sélection</a></p>
+                        <?php else : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=generatePool&eventID=<?= $_GET['eventID'] ?>&pool_turn=1&players=<?= count($winners) ?>">Générer la ou les poule(s) de finale</a></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php break; ?>
+                <?php case 2 : ?>
+                    <?php if( !empty( $sec_exaequo ) ) : ?>
+                        <?php if( empty( $return_turn[1] ) ) : ?>
+                        <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=2">Générer les matchs retours</a></p>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if( count($winners) % 2 == 0 ) : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=3">Générer le troisème tour de sélection</a></p>
+                        <?php else : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=3">Générer la ou les poule(s) de finale</a></p>
+                        <?php endif; ?>
+                    <?php endif; ?>    
+                <?php case 3 : ?>
+                    <?php if( !empty( $third_exaequo ) ) : ?>
+                        <?php if( empty( $return_turn[2] ) ) : ?>
+                        <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=3">Générer les matchs retours</a></p>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if( count($winners) % 2 == 0 ) : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=4">Générer le quatrième tour de sélection</a></p>
+                        <?php else : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=4">Générer la ou les poule(s) de finale</a></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php case 4 : ?>
+                    <?php if( !empty( $fourth_exaequo ) ) : ?>
+                        <?php if( empty( $return_turn[3] ) ) : ?>
+                        <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=4">Générer les matchs retours</a></p>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if( count($winners) % 2 == 0 ) : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=5">Générer le cinquième tour de sélection</a></p>
+                        <?php else : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=5">Générer la ou les poule(s) de finale</a></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php case 5 : ?>
+                    <?php if( !empty( $fifth_exaequo ) ) : ?>
+                        <?php if( empty( $return_turn[4] ) ) : ?>
+                        <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=5">Générer les matchs retours</a></p>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if( count($winners) % 2 == 0 ) : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=6">Générer le sixième tour de sélection</a></p>
+                        <?php else : ?>
+                            <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                            <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=6">Générer la ou les poule(s) de finale</a></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php case 6 : ?>
+                <?php if( !empty( $sixth_exaequo ) ) : ?>
+                    <?php if( empty( $return_turn[5] ) ) : ?>
+                    <p>Certains joueurs sont à égalité, il faut les départager lors d'un match retour ==> <a href="index.php?route=returnMatch&eventID=<?= $_GET['eventID'] ?>&turn=6">Générer les matchs retours</a></p>
+                    <?php endif; ?>
+                    <?php else : ?>
+                        <p><a href="index.php?route=rank&eventID=<?= $_GET['eventID'] ?>">Accéder au classement</a></p>
+                        <p><a href="index.php?route=nextIndividualTurn&eventID=<?= $_GET['eventID'] ?>&turn=6">Générer la ou les poule(s) de finale</a></p>
+                <?php endif; ?>    
+            <?php endswitch; ?>
+        <?php endif; ?>
+    <?php endif; ?> 
+    
+    
+    
+    
+    <?php if( $tournament['pool_on'] == 1 ) : ?>
+         <?php if( $tournament['final_on'] == 1 ) : ?>
+                <h3>Poule finale :</h3>
+            <?php endif; ?>
+        <?php foreach( $pool_turns as $turn ) : ?>
+            <?php if( !empty($turn) ) : ?>
+                <table class="table-admin">
+                    <thead>
+                        <tr>
+                            <th>Tour</th>
+                            <th>Player 1</th>
+                            <th>Player 2</th>
+                            <th>Score p1</th>
+                            <th>Score p2</th>
+                            <?php if( $turn[(count($turn)-1)]['score_player_1'] == NULL && $turn[(count($turn)-1)]['score_player_2'] == NULL ) : ?>
+                                <th></th>
+                            <?php endif; ?>
+                            <th>Résultat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach( $turn as $key => $value ) : ?>
+                            <tr>
+                                <td><?= $value['match_pool_sleeve'] ?></td>
+                                <td>
+                                <?php foreach( $users as $user ) : ?>
+                                    <?php if( $user['user_id'] == $value['player_1_user_id'] ) : ?>
+                                        <?php $player_1 = $user['user_pseudo']; echo $player_1; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>   
+                                </td>
+                                <td>
+                                <?php foreach( $users as $user ) : ?>
+                                    <?php if( $user['user_id'] == $value['player_2_user_id'] ) : ?>
+                                        <?php $player_2 = $user['user_pseudo']; echo $player_2; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>   
+                                </td>
+                                <form method="POST" action="index.php?route=editIndividualScores&matchID=<?= $value['match_id'] ?>&eventID=<?= $_GET['eventID'] ?>">
+                                <td>
+                                    <?php if( $value['score_player_1'] == NULL ) : ?>
+                                        <input type="number" name="score-player-1" value="<?= $value['score_player_1'] ?>">
+                                    <?php else : ?>
+                                        <?= $value['score_player_1'] ?>
+                                    <?php endif; ?>
+                                </td>
+                                <input type="hidden" value="<?= $value['player_1_user_id'] ?>" name="user-id-1">
+                                <td>
+                                    <?php if( $value['score_player_2'] == NULL ) : ?>
+                                        <input type="number" name="score-player-2" value="<?= $value['score_player_2'] ?>">
+                                    <?php else : ?>
+                                        <?= $value['score_player_2'] ?>
+                                    <?php endif; ?>
+                                </td>
+                                <input type="hidden" value="<?= $value['player_2_user_id'] ?>" name="user-id-2">
+                                <?php if( $value['score_player_1'] == NULL && $value['score_player_2'] == NULL ) : ?>
+                                    <td><input type="submit" value="éditer"></td>
+                                <?php endif; ?>
+                                </form>
+                                <?php if( $value['match_exaequo'] == 1 ) : ?>
+                                    <td>Egalité</td>
+                                    
+                                <?php elseif( $value['match_winner'] == 1 ) : ?>
+                                    <td><?= $player_1 ?></td>
+                                <?php elseif( $value['match_winner'] == 2 ) : ?>
+                                    <td><?= $player_2 ?></td>
+                                <?php else : ?>    
+                                <?php endif; ?>
+                            </tr>
+                        <?php endforeach; ?> 
+                    </tbody>
+                </table>
+            <?php endif; ?>    
+        <?php endforeach; ?>    
+    <?php endif; ?>
+    
+    
+    
+    
+    <?php for( $i = 0; $i < count( $turns ); $i++ ) : ?>
+        <?php if( !empty( $turns[$i] ) ) : ?>
+        <h3>Selection tour <?= ($i)+1 ?></h3>
+            <table class="table-admin">
+                <thead>
+                    <tr>
+                        <th>Tour</th>
+                        <th>Player 1</th>
+                        <th>Player 2</th>
+                        <th>Score p1</th>
+                        <th>Score p2</th>
+                        <?php if( $turns[$i][(count($turns[$i]) - 1)]['score_player_1'] == NULL && $turns[$i][(count($turns[$i]) - 1)]['score_player_2'] == NULL ) : ?>
+                            <th></th>
+                        <?php endif; ?>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach( $turns[$i] as $match ) : ?>
+                        <tr>
+                            <td><?= $match['match_sleeve'] ?></td>
+                            <td>
+                            <?php foreach( $users as $user ) : ?>
+                                <?php if( $user['user_id'] == $match['player_1_user_id'] ) : ?>
+                                    <?php $player_1 = $user['user_pseudo']; echo $player_1; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>   
+                            </td>
+                            <td>
+                            <?php foreach( $users as $user ) : ?>
+                                <?php if( $user['user_id'] == $match['player_2_user_id'] ) : ?>
+                                    <?php $player_2 = $user['user_pseudo']; echo $player_2; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>   
+                            </td>
+                            <form method="POST" action="index.php?route=editIndividualScores&matchID=<?= $match['match_id'] ?>&eventID=<?= $_GET['eventID'] ?>">
+                            <td>
+                                <?php if( $match['score_player_1'] == NULL ) : ?>
+                                    <input type="number" name="score-player-1" value="<?= $match['score_player_1'] ?>">
+                                <?php else : ?>
+                                    <?= $match['score_player_1'] ?>
+                                <?php endif; ?>
+                            </td>
+                            <input type="hidden" value="<?= $match['player_1_user_id'] ?>" name="user-id-1">
+                            <td>
+                                <?php if( $match['score_player_2'] == NULL ) : ?>
+                                    <input type="number" name="score-player-2" value="<?= $match['score_player_2'] ?>">
+                                <?php else : ?>
+                                    <?= $match['score_player_2'] ?>
+                                <?php endif; ?>
+                            </td>
+                            <input type="hidden" value="<?= $match['player_2_user_id'] ?>" name="user-id-2">
+                            <?php if( $match['score_player_1'] == NULL && $match['score_player_2'] == NULL ) : ?>
+                                <td><input type="submit" value="éditer"></td>
+                            <?php endif; ?>
+                            </form>
+                            <?php if( $match['match_exaequo'] == 1 ) : ?>
+                                <td>Egalité</td>
+                                
+                            <?php elseif( $match['match_winner'] == 1 ) : ?>
+                                <td><?= $player_1 ?></td>
+                            <?php elseif( $match['match_winner'] == 2 ) : ?>
+                                <td><?= $player_2 ?></td>
+                            <?php else : ?>    
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>    
+        <?php endif; ?>
+        <?php if( !empty( $return_turn[$i] ) ) : ?>
+        <h3>Match(s) retour(s) tour <?= ($i)+1 ?></h3>
+            <table class="table-admin">
+                <thead>
+                    <tr>
+                        <th>Tour</th>
+                        <th>Player 1</th>
+                        <th>Player 2</th>
+                        <th>Score p1</th>
+                        <th>Score p2</th>
+                        <?php if( $return_turn[$i][(count($return_turn[$i]) - 1)]['score_player_1'] == NULL && $return_turn[$i][(count($return_turn[$i]) - 1)]['score_player_2'] == NULL ) : ?>
+                            <th></th>
+                        <?php endif; ?>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach( $return_turn[$i] as $match ) : ?>
+                        <tr>
+                            <td><?= $match['match_sleeve'] ?></td>
+                            <td>
+                            <?php foreach( $users as $user ) : ?>
+                                <?php if( $user['user_id'] == $match['player_1_user_id'] ) : ?>
+                                    <?php $player_1 = $user['user_pseudo']; echo $player_1; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>   
+                            </td>
+                            <td>
+                            <?php foreach( $users as $user ) : ?>
+                                <?php if( $user['user_id'] == $match['player_2_user_id'] ) : ?>
+                                    <?php $player_2 = $user['user_pseudo']; echo $player_2; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>   
+                            </td>
+                            <form method="POST" action="index.php?route=editIndividualScores&matchID=<?= $match['match_id'] ?>&eventID=<?= $_GET['eventID'] ?>">
+                            <td>
+                                <?php if( $match['score_player_1'] == NULL ) : ?>
+                                    <input type="number" name="score-player-1" value="<?= $match['score_player_1']; ?>">
+                                <?php else : ?>
+                                    <?= $match['score_player_1']; ?>
+                                <?php endif; ?>
+                            </td>
+                            <input type="hidden" value="<?= $match['player_1_user_id'] ?>" name="user-id-1">
+                            <td>
+                                <?php if( $match['score_player_2'] == NULL ) : ?>
+                                    <input type="number" name="score-player-2" value="<?= $match['score_player_2'] ?>">
+                                <?php else : ?>
+                                    <?= $match['score_player_2'] ?>
+                                <?php endif; ?>
+                            </td>
+                            <input type="hidden" value="<?= $match['player_2_user_id'] ?>" name="user-id-2">
+                            <?php if( $match['score_player_1'] == NULL && $match['score_player_2'] == NULL ) : ?>
+                                <td><input type="submit" value="éditer"></td>
+                            <?php endif; ?>
+                            </form>
+                            <?php if( $match['match_exaequo'] == 1 ) : ?>
+                                <td>Egalité</td>
+                                
+                            <?php elseif( $match['match_winner'] == 1 ) : ?>
+                                <td><?= $player_1 ?></td>
+                            <?php elseif( $match['match_winner'] == 2 ) : ?>
+                                <td><?= $player_2 ?></td>
+                            <?php else : ?>    
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    <?php endfor; ?>  
+    
+</section>
+

@@ -1,0 +1,41 @@
+<section class="back-container">
+    <ul>
+        <li><a href="index.php?route=players&eventID=<?= $event['event_id'] ?>">Liste des participants</a></li>
+        <?php if( $event['is_on_tournament'] == 0 ) : ?>
+            <li><a href="index.php?route=tournament&eventID=<?= $event['event_id'] ?>">Créer le tournoi</a></li>
+        <?php else : ?>
+            <li><a href="index.php?route=displayTournament&eventID=<?= $event['event_id'] ?>">Afficher le tournoi</a></li>
+            <?php if( !empty($tournament) ) : ?>
+                <?php if( $tournament['team_tournament'] == 1 ) : ?>
+                    <li><a href="index.php?route=teamMatchs&eventID=<?= $event["event_id"] ?>">Liste des matchs</a></li>
+                <?php elseif( $tournament['individual_tournament'] == 1 ) : ?>
+                    <li><a href="index.php?route=individualMatchs&eventID=<?= $event["event_id"] ?>">Liste des matchs</a></li>
+                <?php endif; ?>
+            <?php endif; ?>    
+        <?php endif; ?>    
+        <li><a href="index.php?route=rank&eventID=<?= $event['event_id'] ?>">Classement</a></li>
+        <?php if( isset( $_SESSION['admin'] ) ) : ?>
+            <li><a href="index.php?route=disconnect">Déconnexion</a></li>
+        <?php endif; ?>
+    </ul>
+    
+    <h2>Bienvenue <?= $_SESSION['admin']['admin_name'] ?></h2>
+    
+    <p>Vous êtes le responsable de l'événement suivant :</p>
+    <div class="event-block">
+        <h3><?= $event['event_name'] ?></h3>
+        <p>Voici le lien d'invitation à envoyer aux participants :</p>
+        <p><a href="index.php?route=signIn&eventID=<?= $event['event_id'] ?>">https://maximecerjak.sites.3wa.io/SMILE/index.php?route=signIn&eventID=<?= $event['event_id'] ?></a></p>
+        
+        <p>Début de l'événement : <?= $event['event_start'] ?></p>
+        <p>Cloture de l'événement : <?= $event['event_end'] ?></p>
+        <p><a href="index.php?route=editEvent&eventID=<?= $event['event_id'] ?>">Modifier l'event</a></p>
+        <p><a href="index.php?route=signIn&eventID=<?= $event['event_id'] ?>">Ajouter des joueurs</a></p>
+        <?php if( $event['is_on_tournament'] == 0 ) : ?>
+            <p><a href="index.php?route=tournament&eventID=<?= $event['event_id'] ?>">Créer le tournoi</a></p>
+        <?php else : ?>
+            <p><a href="index.php?route=displayTournament&eventID=<?= $event['event_id'] ?>">Afficher le tournoi</a></p>
+        <?php endif; ?>
+    </div>
+
+</section>

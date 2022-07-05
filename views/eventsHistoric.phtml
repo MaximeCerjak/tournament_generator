@@ -1,0 +1,35 @@
+<section class="tab-block">
+    <h2>Historique des événements</h2>
+    <table class="table-admin">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Entreprise</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach( $events as $event ) : ?>
+                <tr>
+                    <td><?= $event["event_name"] ?></td>
+                    <td><?= $event["event_company"] ?></td>
+                    <td><?= date('d/m/Y H:i:s', strtotime($event["event_start"]))  ?></td>
+                    <td><?= date('d/m/Y H:i:s', strtotime($event["event_end"]))  ?></td>
+                    <?php if( strtotime($event["event_start"]) > time() ) : ?>
+                        <td>&Agrave; venir</td>
+                    <?php elseif( date('d/m/Y H:i:s', strtotime($event["event_start"])) === date('d/m/Y H:i:s') ) : ?>
+                        <td>En cours</td>
+                    <?php elseif( strtotime($event["event_end"]) < time() ) : ?>
+                        <td>Terminé</td>
+                        <td><a href="index.php?route=scores&eventID=<?= $event["event_id"] ?>">Scores</a></td>
+                    <?php endif; ?>
+                    <td><a href="index.php?route=editEvent&eventID=<?= $event["event_id"] ?>">Editer</a></td>
+                    <td><a href="index.php?route=deleteEvent&eventID=<?= $event["event_id"] ?>">Supprimer</a></td>
+                </tr>    
+            <?php endforeach; ?>
+              
+        </tbody>
+    </table>
+</section>

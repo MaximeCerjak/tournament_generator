@@ -1,0 +1,10 @@
+<section class="back-container">
+    <ul>
+        <li><a href="index.php?route=createEvent">Créer un evenement</a></li>
+        <li><a href="index.php?route=eventsHistoric">Historique des événements</a></li>
+        <li><a href="index.php?route=editScores">Editer un tableau des scores</a></li>
+        <?php if( isset( $_SESSION['admin'] ) || isset( $_SESSION['superAdmin'] ) ) : ?>
+            <li><a href="index.php?route=disconnect">Déconnexion</a></li>
+        <?php endif; ?>
+    </ul>
+</section>

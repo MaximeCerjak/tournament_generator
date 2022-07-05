@@ -1,0 +1,47 @@
+<section class="tab-block">
+    
+    <h2><?= $matchs[0]['event_name'] ?> : résultats du tournoi</h2>
+    <table class="table-admin">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Score p1</th>
+                <th>Score p2</th>
+                <th>Résultat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach( $matchs as $match ) : ?>
+                <tr>
+                    <td><?= $match['event_name'] ?></td>
+                    <td>
+                    <?php foreach( $users as $user ) : ?>
+                        <?php if( $user['user_id'] == $match['player_1_user_id'] ) : ?>
+                            <?php $player_1 = $user['user_pseudo']; echo $player_1; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>   
+                    </td>
+                    <td>
+                    <?php foreach( $users as $user ) : ?>
+                        <?php if( $user['user_id'] == $match['player_2_user_id'] ) : ?>
+                            <?php $player_2 = $user['user_pseudo']; echo $player_2 ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>   
+                    </td>
+                    <td><?= $match['score_player_1'] ?></td>
+                    <td><?= $match['score_player_2'] ?></td>
+                    <?php if( $match['match_exaequo'] == 1 ) : ?>
+                        <td>Egalité</td>
+                    <?php elseif( $match['match_winner'] == 1 ) : ?>
+                        <td><?= $player_1 ?></td>
+                    <?php else : ?>
+                        <td><?= $player_2 ?></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>    
+    
+</section>

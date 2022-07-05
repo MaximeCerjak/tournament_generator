@@ -1,0 +1,33 @@
+<section class="back-container">
+    <form class="form" id="tournament-form" method="POST" action="index.php?route=newTournament">
+        
+        <input type="hidden" value="<?= $_GET['eventID'] ?>" id="event-id">
+        <input type="hidden" value="<?= $users['COUNT(*)'] ?>" id="nbr-players">
+        <p>Tournoi en :</p>
+        
+        <div class="input-block">
+            <label for="team">Equipes</label>
+            <input type="radio" name="teamOrSolo" id="team"> 
+        </div>
+        
+        <div class="input-block">
+            <label for="solo">Individuels</label>
+            <input type="radio" name="teamOrSolo" id="solo">   
+        </div>
+        
+        <div class="team-block inActive" id="team-compositor">
+            <p>Il y a actuellement <?= $users['COUNT(*)'] ?> participants pour ce tournoi.</p>
+            <p id="play-time"></p>
+            <p id="para-intro">Nous vous proposons de choisir entre les différentes configurations possibles qui suivent :</p>
+            <div class="team-choice" id="team-choice"></div>
+        </div>
+        
+        <div class="inActive" id="individual-info">
+            <p>Il y a actuellement <?= $users['COUNT(*)'] ?> participants pour ce tournoi.</p>
+            <p id="indiv-play-time"></p>
+            <div id="pool-choice"></div>
+        </div>
+        
+        <button type="submit">Créer !</button>
+    </form>
+</section>

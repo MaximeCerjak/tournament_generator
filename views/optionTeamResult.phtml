@@ -1,0 +1,4 @@
+<?php foreach( $players as $player ) : ?>
+<?php $count++; ?>
+    <li class="active-result" data-option-array-index="<?= $count ?>" value="<?= $player['user_id'] ?>"><?= $player['user_firstname']." ".$player['user_lastname'] ?></li>
+<?php endforeach; ?>

@@ -1,0 +1,46 @@
+<?php if($_GET['route'] === 'editEvent') : ?>
+    <div class="card-event">
+        <img src="<?= $event['event_logo'] ?>" style="width:25%">
+        <h2><?= $event['event_name'] ?></h2>
+        <h3><?= $event['event_company'] ?></h3>
+        <span>Début de l'événement : <?= date('d/m/Y H:i', strtotime($event["event_start"])) ?></span>
+        <span>Fin de l'événement : <?= date('d/m/Y H:i', strtotime($event["event_end"])) ?></span>
+    </div>
+<?php endif; ?>
+<section class="form-block">
+    <form class="form" method="POST" action="<?= $_GET['route'] === 'createEvent' ? 'index.php?route=addEvent' : 'index.php?route=eventEdition&eventID='.$event['event_id'].'&adminID='.$event['admin_id'] ?>" enctype="multipart/form-data">
+        <div class="input-block">
+            <label for="event-name" >Nom de l'événement</label>
+            <input type="text" name="event-name" value="<?= $_GET['route'] === 'editEvent' ? $event['event_name'] : '' ?>" required>
+        </div>
+        <div class="input-block">
+            <label for="company-name">Nom de l'entreprise</label>
+            <input type="text" name="company-name" value="<?= $_GET['route'] === 'editEvent' ? $event["event_company"] : '' ?>">
+        </div>
+        <?php if($_GET['route'] === 'editEvent') : ?>
+            <div class="input-block">
+                <label for="event-logo">Logo entreprise ou evenement</label>
+                <input type="file" name="event-logo" id="event-logo"/>
+            </div>
+        <?php endif; ?>
+        <div class="input-block">
+            <label for="admin-name">Identifiant administrateur</label>
+            <input type="text" name="admin-name" value="<?= $_GET['route'] === 'editEvent' ? $admin["admin_name"] : '' ?>" required>
+        </div>
+        <?php if($_GET['route'] === 'createEvent') : ?>
+            <div class="input-block">
+                <label for="password">Mot de passe administrateur</label>
+                <input type="password" name="password" required>
+            </div>
+        <?php endif; ?>
+        <div class="input-block">
+            <label for="event-start">Date et heure du début de l'événement</label>
+            <input type="datetime-local" name="event-start" value="<?= $_GET['route'] === 'editEvent' ? date('Y-m-dTh:m', strtotime($event["event_start"])) : '' ?>" required>
+        </div>
+        <div class="input-block">
+            <label for="event-end">Date et heure de fin de l'événement</label>
+            <input type="datetime-local" name="event-end" value="<?= $_GET['route'] === 'editEvent' ? date('d/m/Y H:i:s', strtotime($event["event_start"])) : '' ?>" required>
+        </div>
+        <button class="btn" type="submit">Envoyer</button>
+    </form>
+</section>
